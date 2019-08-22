@@ -33,7 +33,7 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
     }];
-    
+    self.tableView.displayEmptyView = false;
     [self.tableView showEmptyView];
     self.tableView.emptyView.titleText = @"2019-07-10 16:34:02.958614+0800 EmptyView[96490:1191046] UITableView 2019-07-10 16:34:02.958614+0800 EmptyView[96490:1191046] UITableView";
     self.tableView.emptyView.detailText = @"454544646464646464564+6489\n4454544646464646464564\n454544646464646464564 ";

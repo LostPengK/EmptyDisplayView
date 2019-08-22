@@ -23,7 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    
+    self.vo.displayEmptyView = true;
+    self.v1.displayEmptyView = true;
+    self.v2.displayEmptyView = false;
     self.vo.emptyView.state = EmptyStateNoData;
     self.v1.emptyView.state = EmptyStateNoNetWork;
     self.v2.emptyView.titleText = @"edit your message here";
