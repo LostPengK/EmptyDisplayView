@@ -19,10 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,nullable) EmptyDisplayView *emptyView;
 
 /**
- default is yes for uiview view and yes for scrollview and it's subclass
+ default is no for uiview view and yes for scrollview and it's subclass
  */
-@property(nonatomic) NSString *displayEmptyView;
-@property(nonatomic) BOOL isDisplayEmptyView;
+@property(nonatomic) BOOL displayEmptyView;
 
 -(void)showEmptyView;
 
