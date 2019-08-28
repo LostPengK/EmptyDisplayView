@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "EmptyView"
-  spec.version      = "0.0.3"
+  spec.version      = "0.0.4"
   spec.summary      = "a light tool to show empty state,custom your own state"
 
   # This description is used to generate tags and improve search results.
