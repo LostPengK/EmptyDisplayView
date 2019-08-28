@@ -53,7 +53,7 @@
 
 
 -(void)refreshEmptyStatus{
-    if ([self itemCount] == 0 && [self isDisplayEmptyView]) {
+    if ([self itemCount] == 0 && [self displayEmptyView]) {
         [self showEmptyView];
     }else{
         [self hideEmptyView];

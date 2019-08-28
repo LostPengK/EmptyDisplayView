@@ -14,7 +14,6 @@
 
 static NSString *EmptyViewKey = @"EmptyViewKey";
 static NSString *DisplayEmptyViewKey = @"DisplayEmptyViewKey";
-static NSString *IsDisplayEmptyViewKey = @"IsDisplayEmptyViewKey";
 
 @implementation UIView (EmptyView)
 
@@ -45,7 +44,6 @@ static NSString *IsDisplayEmptyViewKey = @"IsDisplayEmptyViewKey";
     if (self.emptyView) {
         self.emptyView.frame = self.bounds;
     }
-    NSLog(@"here%@,frame==%@",self.class,NSStringFromCGRect(self.frame));
     [self empty_layoutSubviews];
 }
 
@@ -66,24 +64,19 @@ static NSString *IsDisplayEmptyViewKey = @"IsDisplayEmptyViewKey";
     return v;
 }
 
--(void)setDisplayEmptyView:(NSString *)displayEmptyView{
-    objc_setAssociatedObject(self, &DisplayEmptyViewKey, displayEmptyView, OBJC_ASSOCIATION_COPY_NONATOMIC);
+-(void)setDisplayEmptyView:(BOOL)displayEmptyView{
+    objc_setAssociatedObject(self, &DisplayEmptyViewKey, @(displayEmptyView), OBJC_ASSOCIATION_COPY_NONATOMIC);
+
 }
 
--(void)setIsDisplayEmptyView:(BOOL)isDisplayEmptyView{
-    objc_setAssociatedObject(self, &IsDisplayEmptyViewKey, @(isDisplayEmptyView), OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
-
--(BOOL)isDisplayEmptyView{
-    return [self displayEmptyView].boolValue;
-}
-
--(NSString *)displayEmptyView{
-    return objc_getAssociatedObject(self, &DisplayEmptyViewKey);
+-(BOOL)displayEmptyView{
+     return [objc_getAssociatedObject(self, &DisplayEmptyViewKey) boolValue];
 }
 
 -(void)showEmptyView{
-    
+    if (!self.displayEmptyView) {
+        return;
+    }
     [self addSubview:self.emptyView];
     [self bringSubviewToFront:self.emptyView];
     
