@@ -37,7 +37,7 @@
 -(NSInteger)itemCount{
     NSInteger rowTotal = 0;
     
-    if([self.dataSource numberOfSectionsInTableView:self]){
+    if(self.delegate && [self.dataSource numberOfSectionsInTableView:self]){
         for (NSInteger i = 0 ; i < [self.dataSource numberOfSectionsInTableView:self]; i++) {
             rowTotal += [self.dataSource tableView:self numberOfRowsInSection:i];
         }

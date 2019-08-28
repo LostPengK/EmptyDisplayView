@@ -14,7 +14,7 @@
 #import <Masonry.h>
 #import <objc/runtime.h>
 #import "UIView+EmptyView.h"
-@interface ViewController ()
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)EmptyDisplayView *emptyView;
 @property(nonatomic,strong)UITableView *tableView;
@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -46,6 +47,25 @@
     NSLog(@"viewDidLayoutSubviews==%@",NSStringFromCGRect(self.tableView.frame));
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 0;
+}
+    
+    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld",indexPath.row];
+    
+    return cell;
+}
+    
 -(EmptyDisplayView *)emptyView{
     if (!_emptyView) {
         _emptyView = [[EmptyDisplayView alloc]init];
@@ -58,6 +78,8 @@
 -(UITableView *)tableView{
     if (!_tableView) {
         _tableView  = [[UITableView alloc]init];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
     }
     return _tableView;
 }

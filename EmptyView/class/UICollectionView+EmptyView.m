@@ -39,11 +39,11 @@
     NSInteger rowTotal = 0;
     
     NSInteger numberSection = 0;
-    if ([self.dataSource respondsToSelector:@selector(numberOfSectionsInCollectionView:)]) {
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(numberOfSectionsInCollectionView:)]) {
         numberSection = [self.dataSource numberOfSectionsInCollectionView:self];
     }
     
-    if ([self.dataSource respondsToSelector:@selector(collectionView:numberOfItemsInSection:)]) {
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(collectionView:numberOfItemsInSection:)]) {
         for (NSInteger i = 0 ; i < numberSection; i++) {
             rowTotal += [self.dataSource collectionView:self numberOfItemsInSection:i];
         }
